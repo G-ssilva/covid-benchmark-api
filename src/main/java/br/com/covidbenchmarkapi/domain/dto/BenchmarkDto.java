@@ -4,10 +4,12 @@ import br.com.covidbenchmarkapi.domain.model.Benchmark;
 import io.micrometer.common.util.StringUtils;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class BenchmarkDto {
     @NotBlank
     private String nomeBenchmark;
