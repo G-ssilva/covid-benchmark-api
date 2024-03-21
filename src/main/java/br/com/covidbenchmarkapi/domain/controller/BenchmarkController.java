@@ -25,8 +25,10 @@ public class BenchmarkController {
     private BenchmarkService benchmarkService;
 
     @PostMapping("/{primeiroEstado}/{segundoEstado}/{data}")
-    public List<CovidUfDto> benchmark(@PathVariable String primeiroEstado, @PathVariable String segundoEstado,
-                                      @PathVariable String data) throws IOException, InterruptedException {
+    public List<CovidUfDto> benchmark(@Valid @NotBlank @PathVariable String primeiroEstado,
+                                      @Valid @NotBlank @PathVariable String segundoEstado,
+                                      @Valid @Pattern(regexp = "[0-9]{4}-[0-9]{2}-[0-9]{2}") @PathVariable String data)
+            throws IOException, InterruptedException {
         List<CovidUf> covidUfList = covidUfService.montarInformacoes(primeiroEstado, segundoEstado, data);
 
         return covidUfService.montarRetorno(covidUfList);
