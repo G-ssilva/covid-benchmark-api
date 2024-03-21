@@ -8,6 +8,7 @@ import br.com.covidbenchmarkapi.domain.services.BenchmarkService;
 import br.com.covidbenchmarkapi.domain.services.CovidUfService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +45,12 @@ public class BenchmarkController {
     }
 
     @GetMapping("/listar")
-    public List<BenchmarkDto> listarTodos(){
+    public List<BenchmarkDto> listarTodos() {
         return benchmarkService.retornarBenchmarksSalvos();
+    }
+
+    @GetMapping("/listar/{id}")
+    public BenchmarkDto listarPorId(@Valid @NotNull @PathVariable long id) {
+        return benchmarkService.listarPorId(id);
     }
 }
