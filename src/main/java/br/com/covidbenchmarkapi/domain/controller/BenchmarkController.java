@@ -25,7 +25,7 @@ public class BenchmarkController {
     @Autowired
     private BenchmarkService benchmarkService;
 
-    @PostMapping("/{primeiroEstado}/{segundoEstado}/{data}")
+    @GetMapping("/{primeiroEstado}/{segundoEstado}/{data}")
     public List<CovidUfDto> benchmark(@Valid @NotBlank @PathVariable String primeiroEstado,
                                       @Valid @NotBlank @PathVariable String segundoEstado,
                                       @Valid @Pattern(regexp = "[0-9]{4}-[0-9]{2}-[0-9]{2}") @PathVariable String data)
