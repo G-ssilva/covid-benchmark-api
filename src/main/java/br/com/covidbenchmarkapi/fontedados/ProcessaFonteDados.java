@@ -17,17 +17,16 @@ public class ProcessaFonteDados {
 
     public CovidUf processar(HttpResponse<String> response) throws JsonProcessingException {
         RetornoFonteDadosDto retornoFonteDadosDto = RetornoFonteDadosDto.mapear(response.body());
+        List<CovidUfFonteDadosDto> results = retornoFonteDadosDto.getResults();
 
         log.info(response.body());
 
-        List<CovidUfFonteDadosDto> results = retornoFonteDadosDto.getResults();
+        if (results.isEmpty()) {
+            return null;
+        }
 
         if (results.size() > 1) {
             throw new RegraNegocioException("API externa devolveu mais de um resultado");
-        }
-
-        if (results.isEmpty()) {
-            return null;
         }
 
         return results.get(0).criarEntidade();
