@@ -1,4 +1,4 @@
-package br.com.covidbenchmarkapi.domain.exception;
+package br.com.covidbenchmarkapi.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

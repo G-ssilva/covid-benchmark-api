@@ -1,6 +1,6 @@
 package br.com.covidbenchmarkapi.fontedados.dto;
 
-import br.com.covidbenchmarkapi.domain.exception.RegraNegocioException;
+import br.com.covidbenchmarkapi.exception.RegraNegocioException;
 import br.com.covidbenchmarkapi.domain.model.CovidUf;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package br.com.covidbenchmarkapi.domain.exception;
+package br.com.covidbenchmarkapi.exception;
 
 public class RegraNegocioException extends RuntimeException {
 

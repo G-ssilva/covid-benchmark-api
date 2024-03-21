@@ -1,4 +1,4 @@
-package br.com.covidbenchmarkapi.domain.exception;
+package br.com.covidbenchmarkapi.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;

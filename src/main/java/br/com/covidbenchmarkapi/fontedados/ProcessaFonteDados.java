@@ -1,6 +1,6 @@
 package br.com.covidbenchmarkapi.fontedados;
 
-import br.com.covidbenchmarkapi.domain.exception.RegraNegocioException;
+import br.com.covidbenchmarkapi.exception.RegraNegocioException;
 import br.com.covidbenchmarkapi.domain.model.CovidUf;
 import br.com.covidbenchmarkapi.fontedados.dto.CovidUfFonteDadosDto;
 import br.com.covidbenchmarkapi.fontedados.dto.RetornoFonteDadosDto;
