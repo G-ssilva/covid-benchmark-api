@@ -18,10 +18,12 @@ public class CovidUf {
 
     @Setter
     @NotNull
+    @Column(length = 10)
     private String data;
 
     @Setter
     @NotNull
+    @Column(length = 2)
     private String uf;
 
     @Setter

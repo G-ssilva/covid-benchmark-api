@@ -14,16 +14,17 @@ public class Benchmark {
 
     @Setter
     @NotNull
-    @Column(name = "primeiro_estado")
+    @Column(name = "primeiro_estado", length = 2)
     private String primeiroEstado;
 
     @Setter
     @NotNull
-    @Column(name = "segundo_estado")
+    @Column(name = "segundo_estado", length = 2)
     private String segundoEstado;
 
     @Setter
     @NotNull
+    @Column(length = 10)
     private String data;
 
     @Setter
