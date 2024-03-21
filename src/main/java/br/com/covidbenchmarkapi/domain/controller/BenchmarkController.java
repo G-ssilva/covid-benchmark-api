@@ -2,6 +2,7 @@ package br.com.covidbenchmarkapi.domain.controller;
 
 import br.com.covidbenchmarkapi.domain.dto.BenchmarkDto;
 import br.com.covidbenchmarkapi.domain.dto.CovidUfDto;
+import br.com.covidbenchmarkapi.domain.dto.FiltroDto;
 import br.com.covidbenchmarkapi.domain.model.Benchmark;
 import br.com.covidbenchmarkapi.domain.model.CovidUf;
 import br.com.covidbenchmarkapi.domain.services.BenchmarkService;
@@ -52,5 +53,10 @@ public class BenchmarkController {
     @GetMapping("/listar/{id}")
     public BenchmarkDto listarPorId(@Valid @NotNull @PathVariable long id) {
         return benchmarkService.listarPorId(id);
+    }
+
+    @GetMapping("/listarPorNome")
+    public List<BenchmarkDto> listarPorNome(@RequestBody FiltroDto filtroBenchmark) {
+        return benchmarkService.listarPorNome(filtroBenchmark.getNomeBenchmark());
     }
 }

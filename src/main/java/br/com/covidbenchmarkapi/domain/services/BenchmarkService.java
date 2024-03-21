@@ -43,4 +43,17 @@ public class BenchmarkService {
 
         return new BenchmarkDto(benchmark.get());
     }
+
+    public List<BenchmarkDto> listarPorNome(String nomeBenchmark) {
+        List<Benchmark> benchmarks = repository.findByNomeBenchmarkContainingIgnoreCase(nomeBenchmark);
+        List<BenchmarkDto> benchmarkDtos = new ArrayList<>();
+
+        if (benchmarks.isEmpty()) {
+            return benchmarkDtos;
+        }
+
+        benchmarks.forEach(benchmark -> benchmarkDtos.add(new BenchmarkDto(benchmark)));
+
+        return benchmarkDtos;
+    }
 }
