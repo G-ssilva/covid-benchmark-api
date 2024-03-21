@@ -12,9 +12,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -37,12 +40,15 @@ public class BenchmarkController {
     }
 
     @PostMapping("/{primeiroEstado}/{segundoEstado}/{data}/salvar")
-    public void salvarBenchmark(@Valid @NotBlank @PathVariable String primeiroEstado,
-                                @Valid @NotBlank @PathVariable String segundoEstado,
-                                @Valid @Pattern(regexp = "[0-9]{4}-[0-9]{2}-[0-9]{2}") @PathVariable String data,
-                                @Valid @RequestBody BenchmarkDto dados) {
+    public ResponseEntity<BenchmarkDto> salvarBenchmark(@Valid @NotBlank @PathVariable String primeiroEstado,
+                                          @Valid @NotBlank @PathVariable String segundoEstado,
+                                          @Valid @Pattern(regexp = "[0-9]{4}-[0-9]{2}-[0-9]{2}") @PathVariable String data,
+                                          @Valid @RequestBody BenchmarkDto dados, UriComponentsBuilder uriBuilder) {
         Benchmark benchmark = dados.criarEntidade(primeiroEstado, segundoEstado, data);
         benchmarkService.persistir(benchmark);
+
+        URI uri = uriBuilder.path("api/benchmark/listar/{id}").buildAndExpand(benchmark.getId()).toUri();
+        return ResponseEntity.created(uri).body(new BenchmarkDto(benchmark));
     }
 
     @GetMapping("/listar")
