@@ -1,5 +1,6 @@
 package br.com.covidbenchmarkapi.fontedados;
 
+import br.com.covidbenchmarkapi.domain.exception.RegraNegocioException;
 import br.com.covidbenchmarkapi.domain.model.CovidUf;
 import br.com.covidbenchmarkapi.fontedados.dto.CovidUfFonteDadosDto;
 import br.com.covidbenchmarkapi.fontedados.dto.RetornoFonteDadosDto;
@@ -22,8 +23,7 @@ public class ProcessaFonteDados {
         List<CovidUfFonteDadosDto> results = retornoFonteDadosDto.getResults();
 
         if (results.size() > 1) {
-            //TODO implementar exceptions personalizadas
-            throw new RuntimeException("Regra de negócio violada, trouxe mais de um estado");
+            throw new RegraNegocioException("API externa devolveu mais de um resultado");
         }
 
         if (results.isEmpty()) {

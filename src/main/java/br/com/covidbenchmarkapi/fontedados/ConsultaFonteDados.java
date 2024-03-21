@@ -39,7 +39,6 @@ public class ConsultaFonteDados {
 
     public CovidUf consultar(String estado, String data) throws IOException, InterruptedException {
         if (API_TOKEN == null || API_URL_BASE == null) {
-            //TODO implementar exceptions personalizadas
             throw new RuntimeException("Não foi possível definir o valor do token e/ou da URL base da API Externa");
         }
 
@@ -49,7 +48,6 @@ public class ConsultaFonteDados {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         if (response == null) {
-            //TODO implementar exceptions personalizadas
             throw new RuntimeException("Não foi possível obter o response da API externa");
         }
 

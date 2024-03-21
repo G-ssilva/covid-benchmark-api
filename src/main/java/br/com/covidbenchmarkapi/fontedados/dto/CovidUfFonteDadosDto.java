@@ -1,5 +1,6 @@
 package br.com.covidbenchmarkapi.fontedados.dto;
 
+import br.com.covidbenchmarkapi.domain.exception.RegraNegocioException;
 import br.com.covidbenchmarkapi.domain.model.CovidUf;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -40,8 +41,7 @@ public class CovidUfFonteDadosDto {
             covidUf.setMortesSobreConfirmados(new BigDecimal(mortesSobreConfirmados));
             covidUf.setPossuiDados(true);
         } catch (NullPointerException npe) {
-            //TODO implementar exceptions personalizadas
-            throw new RuntimeException("Não foi possível definir um ou mais campos");
+            throw new RegraNegocioException("Um ou mais campos estão nulos");
         }
 
         return covidUf;
