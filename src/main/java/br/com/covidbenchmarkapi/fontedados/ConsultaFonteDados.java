@@ -47,8 +47,10 @@ public class ConsultaFonteDados {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        if (response == null) {
-            throw new RuntimeException("Não foi possível obter o response da API externa");
+        if (!isValid(response)) {
+            throw new RuntimeException("Não foi possível obter os dados para o Estado e a data definida. " +
+                    "Aguarde alguns minutos para tentar novamente. " +
+                    "Caso o problema persista, contate o administrador.");
         }
 
         return processaFonteDados.processar(response);
@@ -67,5 +69,9 @@ public class ConsultaFonteDados {
     private String montaUrlComFiltroDataEstado(String estado, String data) {
         return API_URL_BASE + API_URL_FILTRO_TIPO_LOCAL + API_URL_FILTRO_ESTADO + estado
                 + API_URL_FILTRO_DATA + data;
+    }
+
+    private boolean isValid(HttpResponse<String> response) {
+        return response != null && response.statusCode() == 200;
     }
 }
