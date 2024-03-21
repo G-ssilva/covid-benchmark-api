@@ -42,4 +42,9 @@ public class BenchmarkController {
         Benchmark benchmark = dados.criarEntidade(primeiroEstado, segundoEstado, data);
         benchmarkService.persistir(benchmark);
     }
+
+    @GetMapping("/listar")
+    public List<BenchmarkDto> listarTodos(){
+        return benchmarkService.retornarBenchmarksSalvos();
+    }
 }

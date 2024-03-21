@@ -13,6 +13,10 @@ public class BenchmarkDto {
     private String nomeBenchmark;
 
     private String observacao;
+    private long id;
+    private String primeiroEstado;
+    private String segundoEstado;
+    private String data;
 
     public Benchmark criarEntidade(String primeiroEstado, String segundoEstado, String data) {
         Benchmark benchmark = new Benchmark();
@@ -27,5 +31,14 @@ public class BenchmarkDto {
         }
 
         return benchmark;
+    }
+
+    public BenchmarkDto(Benchmark benchmark){
+        this.nomeBenchmark = benchmark.getNomeBenchmark();
+        this.observacao = benchmark.getObservacao();
+        this.id = benchmark.getId();
+        this.primeiroEstado = benchmark.getPrimeiroEstado();
+        this.segundoEstado = benchmark.getSegundoEstado();
+        this.data = benchmark.getData();
     }
 }
