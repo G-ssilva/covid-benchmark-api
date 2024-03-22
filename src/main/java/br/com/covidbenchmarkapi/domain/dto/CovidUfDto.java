@@ -9,8 +9,8 @@ import lombok.Setter;
 public class CovidUfDto {
     private String data;
     private String uf;
-    private int confirmacoes;
-    private int mortes;
+    private long confirmacoes;
+    private long mortes;
     private float confirmadosSobreCemMilHabitantes;
     private float mortesSobreConfirmados;
     private boolean possuiDados;

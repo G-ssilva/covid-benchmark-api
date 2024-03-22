@@ -1,6 +1,7 @@
 package br.com.covidbenchmarkapi.domain.dto;
 
 import br.com.covidbenchmarkapi.domain.model.Benchmark;
+import br.com.covidbenchmarkapi.domain.model.DadosComparados;
 import io.micrometer.common.util.StringUtils;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -19,8 +20,9 @@ public class BenchmarkDto {
     private String primeiroEstado;
     private String segundoEstado;
     private String data;
+    private DadosComparadosDto dadosComparadosDto;
 
-    public Benchmark criarEntidade(String primeiroEstado, String segundoEstado, String data) {
+    public Benchmark criarEntidade(String primeiroEstado, String segundoEstado, String data, DadosComparados dadosComparados) {
         Benchmark benchmark = new Benchmark();
 
         benchmark.setPrimeiroEstado(primeiroEstado);
@@ -32,6 +34,8 @@ public class BenchmarkDto {
             benchmark.setObservacao(observacao);
         }
 
+        benchmark.setDadosComparados(dadosComparados);
+
         return benchmark;
     }
 
@@ -42,5 +46,6 @@ public class BenchmarkDto {
         this.primeiroEstado = benchmark.getPrimeiroEstado();
         this.segundoEstado = benchmark.getSegundoEstado();
         this.data = benchmark.getData();
+        this.dadosComparadosDto = new DadosComparadosDto(benchmark.getDadosComparados());
     }
 }

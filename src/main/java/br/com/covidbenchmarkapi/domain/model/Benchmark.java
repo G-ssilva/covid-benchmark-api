@@ -34,4 +34,9 @@ public class Benchmark {
 
     @Setter
     private String observacao;
+
+    @Setter
+    @NotNull
+    @ManyToOne
+    private DadosComparados dadosComparados;
 }

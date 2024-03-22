@@ -28,11 +28,11 @@ public class CovidUf {
 
     @Setter
     @NotNull
-    private Integer confirmacoes;
+    private long confirmacoes;
 
     @Setter
     @NotNull
-    private Integer mortes;
+    private long mortes;
 
     @Setter
     @NotNull
