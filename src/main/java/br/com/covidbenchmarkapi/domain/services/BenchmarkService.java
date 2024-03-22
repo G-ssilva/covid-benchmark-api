@@ -1,8 +1,10 @@
 package br.com.covidbenchmarkapi.domain.services;
 
 import br.com.covidbenchmarkapi.domain.dto.BenchmarkDto;
+import br.com.covidbenchmarkapi.domain.dto.CamposUtilDto;
 import br.com.covidbenchmarkapi.domain.model.Benchmark;
 import br.com.covidbenchmarkapi.domain.repository.BenchmarkRepository;
+import io.micrometer.common.util.StringUtils;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,14 +36,14 @@ public class BenchmarkService {
         return repository.findAll();
     }
 
-    public BenchmarkDto listarPorId(long id) {
+    public Benchmark listarPorId(long id) {
         Optional<Benchmark> benchmark = repository.findById(id);
 
         if (benchmark.isEmpty()) {
             throw new EntityNotFoundException("ID do benchmark não encontrado na base de dados");
         }
 
-        return new BenchmarkDto(benchmark.get());
+        return benchmark.get();
     }
 
     public List<BenchmarkDto> listarPorNome(String nomeBenchmark) {
@@ -55,5 +57,18 @@ public class BenchmarkService {
         benchmarks.forEach(benchmark -> benchmarkDtos.add(new BenchmarkDto(benchmark)));
 
         return benchmarkDtos;
+    }
+
+    public BenchmarkDto toDto(Benchmark benchmark) {
+        return new BenchmarkDto(benchmark);
+    }
+
+    public void editar(long id, CamposUtilDto camposUtilDto) {
+        Benchmark benchmark = listarPorId(id);
+
+        if (StringUtils.isNotBlank(camposUtilDto.getObservacao())) {
+            benchmark.setObservacao(camposUtilDto.getObservacao());
+            persistir(benchmark);
+        }
     }
 }

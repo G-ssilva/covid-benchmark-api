@@ -5,6 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class FiltroDto {
+public class CamposUtilDto {
     private String nomeBenchmark;
+    private String observacao;
 }

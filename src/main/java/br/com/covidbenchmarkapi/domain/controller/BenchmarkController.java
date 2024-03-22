@@ -12,6 +12,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -67,11 +68,19 @@ public class BenchmarkController {
 
     @GetMapping("/listar/{id}")
     public BenchmarkDto listarPorId(@Valid @NotNull @PathVariable long id) {
-        return benchmarkService.listarPorId(id);
+        Benchmark benchmark = benchmarkService.listarPorId(id);
+        return benchmarkService.toDto(benchmark);
     }
 
     @GetMapping("/listarPorNome")
-    public List<BenchmarkDto> listarPorNome(@RequestBody FiltroDto filtroBenchmark) {
-        return benchmarkService.listarPorNome(filtroBenchmark.getNomeBenchmark());
+    public List<BenchmarkDto> listarPorNome(@RequestBody CamposUtilDto camposUtilDto) {
+        return benchmarkService.listarPorNome(camposUtilDto.getNomeBenchmark());
+    }
+
+    @PutMapping("/editar/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void editarBenchmark(@Valid @NotNull @PathVariable long id,
+                                                      @RequestBody CamposUtilDto camposUtilDto) {
+        benchmarkService.editar(id, camposUtilDto);
     }
 }
