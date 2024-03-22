@@ -71,4 +71,10 @@ public class BenchmarkService {
             persistir(benchmark);
         }
     }
+
+    public void deletar(long id) {
+        listarPorId(id);
+
+        repository.deleteById(id);
+    }
 }

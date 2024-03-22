@@ -83,4 +83,10 @@ public class BenchmarkController {
                                                       @RequestBody CamposUtilDto camposUtilDto) {
         benchmarkService.editar(id, camposUtilDto);
     }
+
+    @DeleteMapping("/deletar/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletar(@Valid @NotNull @PathVariable long id) {
+        benchmarkService.deletar(id);
+    }
 }
