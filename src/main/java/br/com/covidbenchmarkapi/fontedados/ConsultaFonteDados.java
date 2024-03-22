@@ -3,6 +3,7 @@ package br.com.covidbenchmarkapi.fontedados;
 import br.com.covidbenchmarkapi.domain.model.CovidUf;
 import br.com.covidbenchmarkapi.domain.services.ConsultaFonteDadosService;
 import lombok.NoArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ import java.net.http.HttpResponse;
 
 @NoArgsConstructor
 @Component
+@Log
 public class ConsultaFonteDados {
     @Autowired
     private HttpClient client;
@@ -35,6 +37,9 @@ public class ConsultaFonteDados {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         if (!consultaFonteDadosService.isValidResponse(response)) {
+            String mensagemResponse = response == null ? "null" : response.body();
+            log.warning("Retorno API externa: " + response);
+            log.warning("Mensagem API externa: " + mensagemResponse);
             throw new RuntimeException("Não foi possível obter os dados para o Estado e a data definida. " +
                     "Aguarde alguns minutos para tentar novamente. " +
                     "Caso o problema persista, contate o administrador.");
