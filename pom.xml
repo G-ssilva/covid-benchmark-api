@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com</groupId>
 	<artifactId>covid-benchmark-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>COVID Benchmark API</name>
 	<description>API Rest COVID Benchmark</description>
 	<properties>
