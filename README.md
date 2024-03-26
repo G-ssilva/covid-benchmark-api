@@ -387,3 +387,11 @@ DELETE /api/benchmark/deletar/{id}
 Deleta o benchmark do ID informado.
 
 Exemplo de requisição: **/api/benchmark/deletar/1**
+
+## Melhorias futuras
+- Adicionar opção de filtrar a listagem (UF, data, observação, etc)
+- Adicionar mais testes unitários, testes de integração, testes E2E e afins
+- Adicionar mais exceptions personalizadas, padronizando ao máximo do retorno da API
+- Adicionar proteção por token
+- Refatorar a aplicação pensando em aplicar melhores práticas, padrões, redução de depedências, redução de responsabilidades e demais melhorias
+- Dentre demais ideias que possam surgir para melhorar a aplicação
